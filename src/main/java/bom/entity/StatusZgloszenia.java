@@ -1,5 +1,8 @@
 package bom.entity;
 
+import lombok.Getter;
+
+@Getter
 public enum StatusZgloszenia {
     STATUS_PRZYJETE("PRZYJĘTĘ"),
     STATUS_W_REALIZACJI("W REALIZACJI"),

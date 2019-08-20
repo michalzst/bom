@@ -19,70 +19,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <Title>Biuro podróży grupa 3</Title>
+    <Title>Zgłoszenia Big bagi</Title>
     <div th:replace="fragments/header :: header-css"/>
 
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
     <div>
-        <div class="labelpromotionornoy" id="tekstpromocja"th:text="${promotion}" onmouseover='clearTimeout(the_timeout);
-        this.style.color="black";'
-             onmouseout='setTimeout(the_flash, 500);'>Label</div>
-        <script type="text/javascript">
-            // <!--
-            flash("tekstpromocja", "black", 500, "white", 500);
-            // -->
-        </script>
         <table class="blueTable">
             <thead>
             <tr>
                 <th>Lp</th>
-                <th>Nazwa</th>
-                <th>Miasto</th>
-                <th>Państwo</th>
-                <th>Szczegóły</th>
+                <th>Id</th>
+                <th>Data zgłoszenia</th>
+                <th>Treść zgłoszenia</th>
+                <th>Nazwa klienta</th>
+                <th>Adres</th>
+                <th>Nr telefonu</th>
+                <th>Nr oswiadczenia</th>
+                <th>Nr worków</th>
+                <th>Status</th>
+                <th>Przyjmujący zgłoszenie</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="trip,iterationStatus : ${promotiontrips}">
+            <tr th:each="zgloszenia,iterationStatus : ${zgloszenia}">
                 <td th:text="${iterationStatus.count}">1</td>
-                <td th:text="${trip.getName()}">Name</td>
-                <td th:text="${trip.getDestinationName().getName()}">destinationName</td>
-                <td th:text="${trip.getDestinationName().getCountry().name}">countryName</td>
-                <td>
-                    <form action="#" th:action="@{'/showTripsById'}" method="get">
-                        <input type="hidden" name="id" th:value="${trip.getId()}" />
-                        <button class="buttonWiecej" type="submit" id="submitButton">Wiecej...</button>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <div class="labelpromotionornoy" th:text="${notpromotion}">Label</div>
-        <table class="blueTable">
-            <thead>
-            <tr>
-                <th>Lp</th>
-                <th>Nazwa</th>
-                <th>Miasto</th>
-                <th>Państwo</th>
-                <th>Szczegóły</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="trip,iterationStatus : ${trips}">
-                <td th:text="${iterationStatus.count}">1</td>
-                <td th:text="${trip.getName()}">Name</td>
-                <td th:text="${trip.getDestinationName().getName()}">destinationName</td>
-                <td th:text="${trip.getDestinationName().getCountry().name}">countryName</td>
-                <td>
-                    <form action="#" th:action="@{'/showTripsById'}" method="get">
-                        <input type="hidden" name="id" th:value="${trip.getId()}" />
-                        <button class="buttonWiecej" type="submit" id="submitButton2">Wiecej...</button>
-                    </form>
-                </td>
+                <td th:text="${zgloszenia.getId()}">Id</td>
+                <td th:text="${zgloszenia.getDataZgloszenia()}">Data zgłoszenia</td>
+                <td th:text="${zgloszenia.getTrescZgloszenia()}">Treść zgłoszenia</td>
+                <td th:text="${zgloszenia.getNazwaKlienta()}">Nazwa klienta</td>
+                <td th:text="${zgloszenia.getUlicaNrDomu()}">Adres</td>
+                <td th:text="${zgloszenia.getNrTelefonu()}">Nr telefonu</td>
+                <td th:text="${zgloszenia.getNrOswiadczenia()}">Nr oswiadczenia</td>
+                <td th:text="${zgloszenia.getNrWorka()}">Nr worków</td>
+                <td th:text="${zgloszenia.getStatusZgloszenia()}">Status</td>
+                <td th:text="${zgloszenia.getNazwaUzytkownika()()}">Przyjmujący zgłoszenie</td>
             </tr>
             </tbody>
         </table>
