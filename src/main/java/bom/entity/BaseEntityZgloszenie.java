@@ -4,10 +4,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -18,12 +17,13 @@ public class BaseEntityZgloszenie {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String dataZgloszenia;
+    private LocalDateTime dataZgloszenia;
     private String trescZgloszenia;
     private String nazwaKlienta;
     private String ulicaNrDomu;
     private String nrTelefonu;
     private String uwagiOdLogistyki;
-    private String statusZgloszenia;
+    @Enumerated(EnumType.STRING)
+    private StatusZgloszenia statusZgloszenia;
     private String nazwaUzytkownika;
 }

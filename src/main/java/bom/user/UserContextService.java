@@ -11,9 +11,6 @@ import org.springframework.web.context.annotation.SessionScope;
 @SessionScope
 public class UserContextService {
 
-//    @Getter
-//    private Cart cart = new Cart();
-
     private static Gson gson = new Gson();
 
     public String getLoggedUserEmail() {
@@ -33,41 +30,35 @@ public class UserContextService {
         return false;
     }
 
-    public boolean user() {
+    public boolean bomUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getAuthorities().stream().anyMatch(e -> RoleTypeEnum.USER.getRoleName().equalsIgnoreCase(e.getAuthority()))) {
+        if (authentication.getAuthorities().stream().anyMatch(e -> RoleTypeEnum.BOM.getRoleName().equalsIgnoreCase(e.getAuthority()))) {
             return true;
         }
         return false;
     }
 
-//    public String getCartAsJson() {
-//        return gson.toJson(cart);
-//    }
-//
-//
-//    public void addProductToCart(Product product) {
-//        List<OrderLine> orderLines = cart.getOrderLines();
-//        Optional<OrderLine> first = orderLines.stream().filter(e -> e.getProduct().getId().equals(product.getId())).findFirst();
-//        if (first.isPresent()) {
-//            first.get().setQuantity(first.get().getQuantity() + 1);
-//        } else {
-//            OrderLine orderLine = new OrderLine();
-//            orderLine.setProduct(product);
-//            orderLine.setProductPrice(product.getPrice());
-//            orderLine.setQuantity(1);
-//            orderLines.add(orderLine);
-//        }
-//    }
 
-    public void getCurrentUser() {
+    public void getCurrentBomUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getAuthorities().stream().anyMatch(e -> RoleTypeEnum.USER.getRoleName().equalsIgnoreCase(e.getAuthority()))) {
+        if (authentication.getAuthorities().stream().anyMatch(e -> RoleTypeEnum.BOM.getRoleName().equalsIgnoreCase(e.getAuthority()))) {
             System.out.println();
         }
     }
 
-//    public void clearCart() {
-//        cart = new Cart();
-//    }
+    public boolean logistykaUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getAuthorities().stream().anyMatch(e -> RoleTypeEnum.LOGISTYKA.getRoleName().equalsIgnoreCase(e.getAuthority()))) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public void getCurrentLogistykaUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getAuthorities().stream().anyMatch(e -> RoleTypeEnum.LOGISTYKA.getRoleName().equalsIgnoreCase(e.getAuthority()))) {
+            System.out.println();
+        }
+    }
 }

@@ -18,11 +18,12 @@ import java.util.Set;
 public class User extends BaseEntity {
     private String firstName;
     private String surName;
-    private String username;
+    private String login;
     private String passwordHash;
 
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JoinTable(name = "user_role")
     private Set<Role> roles;
+
 }

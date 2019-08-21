@@ -29,7 +29,6 @@
         <table class="blueTable">
             <thead>
             <tr>
-                <th>Lp</th>
                 <th>Id</th>
                 <th>Data zgłoszenia</th>
                 <th>Treść zgłoszenia</th>
@@ -43,18 +42,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="zgloszenia,iterationStatus : ${zgloszenia}">
-                <td th:text="${iterationStatus.count}">1</td>
-                <td th:text="${zgloszenia.getId()}">Id</td>
-                <td th:text="${zgloszenia.getDataZgloszenia()}">Data zgłoszenia</td>
-                <td th:text="${zgloszenia.getTrescZgloszenia()}">Treść zgłoszenia</td>
-                <td th:text="${zgloszenia.getNazwaKlienta()}">Nazwa klienta</td>
-                <td th:text="${zgloszenia.getUlicaNrDomu()}">Adres</td>
-                <td th:text="${zgloszenia.getNrTelefonu()}">Nr telefonu</td>
-                <td th:text="${zgloszenia.getNrOswiadczenia()}">Nr oswiadczenia</td>
-                <td th:text="${zgloszenia.getNrWorka()}">Nr worków</td>
-                <td th:text="${zgloszenia.getStatusZgloszenia()}">Status</td>
-                <td th:text="${zgloszenia.getNazwaUzytkownika()()}">Przyjmujący zgłoszenie</td>
+            <tr th:each="zgloszenie,iterationStatus : ${zgloszenia}">
+                <td th:text="${zgloszenie.getId()}">Id</td>
+                <td th:text="${zgloszenie.getDataZgloszenia().toString()}">Data zgłoszenia</td>
+                <td th:text="${zgloszenie.getTrescZgloszenia()}">Treść zgłoszenia</td>
+                <td th:text="${zgloszenie.getNazwaKlienta()}">Nazwa klienta</td>
+                <td th:text="${zgloszenie.getUlicaNrDomu()}">Adres</td>
+                <td th:text="${zgloszenie.getNrTelefonu()}">Nr telefonu</td>
+                <td th:text="${zgloszenie.getNrOswiadczenia()}">Nr oswiadczenia</td>
+                <td th:text="${zgloszenie.getNrWorka()}">Nr worków</td>
+                <td th:text="${zgloszenie.getStatusZgloszenia().getStatus()}">Status</td>
+                <td th:text="${zgloszenie.getNazwaUzytkownika()}">Przyjmujący zgłoszenie</td>
             </tr>
             </tbody>
         </table>
