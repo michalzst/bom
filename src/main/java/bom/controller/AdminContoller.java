@@ -40,8 +40,8 @@ public class AdminContoller {
             return "addUserForm";
         }
 
-        userService.updateUser(user);
-        model.addAttribute("addUserData", user.getLogin());
+        userService.addNewUser(user);
+        model.addAttribute("addUserData", user.getUsername());
         return "addUserEffect";
     }
 

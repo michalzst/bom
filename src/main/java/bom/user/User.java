@@ -7,7 +7,6 @@ import lombok.Setter;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Setter
@@ -19,12 +18,12 @@ import java.util.Set;
 public class User extends BaseEntity {
     private String firstName;
     private String surName;
-    private String login;
+    private String username;
     private String passwordHash;
 
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JoinTable(name = "user_role")
-    private Set<Role> roles = new HashSet<>();
+    private Set<Role> roles;
 
 }

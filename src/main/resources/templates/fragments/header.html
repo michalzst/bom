@@ -22,7 +22,7 @@
                 <a href="/admin/adduser">Dodaj użytkownika</a>
             </span>
             <span th:if="${@userContextService.bomUser()}">
-                <a th:if="${@userContextService.getLoggedUserEmail()}" href="/">Nowe zgłoszenia</a>
+                <a th:if="${@userContextService.getLoggedUserEmail()}" href="/index">Nowe zgłoszenia</a>
             </span>
             <a href="/logout">Wyloguj</a>
         </span>

@@ -24,9 +24,8 @@ public class UserDtoBuilder {
         }
         user.setFirstName(dto.getFirstName());
         user.setSurName(dto.getSurName());
-        user.setLogin(dto.getLogin());
+        user.setUsername(dto.getUsername());
         user.setPasswordHash(dto.getPassword());
-
         return user;
     }
 }

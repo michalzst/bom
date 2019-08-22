@@ -2,17 +2,21 @@ package bom.service;
 
 import bom.dto.UserDto;
 import bom.dtoBuilder.UserDtoBuilder;
-import bom.user.Role;
-import bom.user.User;
-import bom.user.UsersRepository;
-import org.hibernate.mapping.Set;
+import bom.user.*;
+import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import java.util.Optional;
 
 @Service
 public class UserService {
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserDtoBuilder userDtoBuilder;
@@ -20,22 +24,29 @@ public class UserService {
     @Autowired
     private UsersRepository<User> usersRepository;
 
-    public void createNewUser(String firstName, String surName,String login, String password,String role){
-        if (!usersRepository.existsByLogin(login)){
+    public void addNewUser(UserDto userDto){
+        if (usersRepository.existsByUsername(userDto.getUsername())) {
+            throw new UserExistsException("Użytkownik z loginem: " + userDto.getUsername() + " juz istnieje w bazie danych");
+        } else {
             User user = new User();
-            Role userRole = new Role();
-            userRole.setRoleName(role);
-            user.setFirstName(firstName);
-            user.setSurName(surName);
-            user.setLogin(login);
-            user.setPasswordHash(password);
-            usersRepository.save(user);
+            user.setFirstName(userDto.getFirstName().trim());
+            user.setSurName(userDto.getSurName().trim());
+            user.setUsername(userDto.getUsername().trim());
+            user.setPasswordHash(passwordEncoder.encode(userDto.getPassword().trim()));
+            addUserRole(user,userDto.getRoleTypeEnum());
         }
     }
 
     public void updateUser(UserDto userDto){
         User u = userDtoBuilder.buildUserEntity(userDto);
         usersRepository.save(u);
+    }
+
+    private void addUserRole(User user,RoleTypeEnum roleTypeEnum) {
+        Role roleUser = Optional.ofNullable(roleRepository.findRoleByRoleName(roleTypeEnum.getRoleName()))
+                .orElseGet(() -> roleRepository.save(new Role(roleTypeEnum.getRoleName())));
+        user.setRoles(Sets.newHashSet(roleUser));
+        usersRepository.save(user);
     }
 }
 
