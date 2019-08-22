@@ -30,7 +30,7 @@
     <label for="role">Uprawnienia:</label>
     <select autofocus class="form-control" id="role" th:field="*{roleTypeEnum}">
         <option th:value="''" th:text="Wybierz"></option>
-        <option th:each="roleEnum : ${roleEnums}" th:value="${roleEnum.getRoleName()}" th:text="${roleEnum}"></option>
+        <option th:each="roleEnum : ${roleEnums}" th:value="${roleEnum}" th:text="${roleEnum}"></option>
     </select>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>

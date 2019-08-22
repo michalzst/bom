@@ -28,7 +28,7 @@
         </span>
         <span th:if="!${@userContextService.getLoggedUserEmail()}">
             <a href="/index">Nowe zgloszenia</a>
-            <a href="/login">Login</a>
+            <a href="/login">Zaloguj się</a>
         </span>
         <div style="display: flex">
             <p th:if="${@userContextService.getLoggedUserEmail()}"

@@ -1,6 +1,7 @@
 package bom;
 
 import bom.service.BigbagiService;
+import bom.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -13,6 +14,9 @@ public class MainController {
 
     @Autowired
     BigbagiService bigbagiService;
+
+    @Autowired
+    RoleService roleService;
 
     @GetMapping("/")
     public ModelAndView getIndex() {
@@ -34,6 +38,7 @@ public class MainController {
 
     @EventListener(ApplicationReadyEvent.class)
     public void addZgloszenie() {
+        roleService.createRolesFromEnum();
         bigbagiService.createNewZgloszenie("Zabrać worki 4x", "Kowalski Jan", "Wyszyńskiego 16", "555-741-001", "3315, 3365, 1147, 2248", "123/08/2019");
         bigbagiService.createNewZgloszenie("Zabrać worki 1x", "Kowalski Jerzy", "Szczecińska 16", "888-524-785", "4171", "faktura nr 293/S22/2019");
         bigbagiService.createNewZgloszenie("Zabrać worki 2x", "Nowak Jan", "Wieniawskiego 22", "475-412-963", "7418, 7757", "346/08/2019");
