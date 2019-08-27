@@ -5,7 +5,7 @@
         function endableButtonSubmit(id) {
             var val;
             val = document.getElementById('role').value;
-            if (!(val='')){
+            if (!(val=='')){
                 document.getElementById(id).removeAttribute('disabled');
             }else {
                 document.getElementById(id).setAttribute('disabled','disabled');
@@ -42,7 +42,7 @@
     <div class="error" th:errors="*{password}"></div>
 
     <label for="role">Uprawnienia:</label>
-    <select onchange='endableButtonSubmit("Zapisz");' autofocus class="form-control" id="role" th:field="*{roleTypeEnum}">
+    <select onclick='endableButtonSubmit("Zapisz");' autofocus class="form-control" id="role" th:field="*{roleTypeEnum}">
         <option th:value="''" th:text="Wybierz"></option>
         <option th:each="roleEnum : ${roleEnums}" th:value="${roleEnum}" th:text="${roleEnum}"></option>
     </select>
