@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pl">
 <head>
+    <script type="text/javascript">
+        function endableButtonSubmit(id) {
+            var val;
+            val = document.getElementById('role').value;
+            if (!(val='')){
+                document.getElementById(id).removeAttribute('disabled');
+            }else {
+                document.getElementById(id).setAttribute('disabled','disabled');
+            }
+        }
+    </script>
+
     <title>Dodawanie użytkownika</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <th:block th:replace="fragments/header :: header-css"/>
     <link rel="stylesheet" th:href="@{/css/signin.css}"/>
+
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
 <h1 class="h1" th:text="'Dodawanie użytkownika'"></h1>
-<form th:action="@{/admin/adduser}" th:object="${userFormData}" method="post" class="form-signin">
+<form th:action="@{/admin/adduser}" th:object="${userFormData}" method="post"
+      class="form-signin">
 
     <label for="firstName">Imię użytkownika:</label>
     <input id="firstName" type="text" th:field="*{firstName}" autofocus class="form-control"/>
@@ -19,7 +33,7 @@
     <input id="surName" type="text" th:field="*{surName}" autofocus class="form-control"/>
     <div class="error" th:errors="*{surName}"></div>
 
-    <label for="username">Login:</label>
+    <label for="username">Nazwa użytkownika:</label>
     <input id="username" type="text" th:field="*{username}" autofocus class="form-control"/>
     <div class="error" th:errors="*{username}"></div>
 
@@ -28,12 +42,11 @@
     <div class="error" th:errors="*{password}"></div>
 
     <label for="role">Uprawnienia:</label>
-    <select autofocus class="form-control" id="role" th:field="*{roleTypeEnum}">
+    <select onchange='endableButtonSubmit("Zapisz");' autofocus class="form-control" id="role" th:field="*{roleTypeEnum}">
         <option th:value="''" th:text="Wybierz"></option>
         <option th:each="roleEnum : ${roleEnums}" th:value="${roleEnum}" th:text="${roleEnum}"></option>
     </select>
-
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Zapisz</button>
+    <button id="Zapisz" class="btn btn-lg btn-primary btn-block" disabled="disabled" type="submit">Zapisz</button>
 </form>
 </body>
 </html>

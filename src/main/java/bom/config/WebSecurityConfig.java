@@ -49,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin@admin.pl")
+                .withUser("admin")
                 .password(bCryptPasswordEncoder.encode("admin12345"))
                 .roles("ADMIN");
         auth.jdbcAuthentication()
