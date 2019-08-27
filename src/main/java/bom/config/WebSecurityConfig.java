@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("admin")
-                .password(bCryptPasswordEncoder.encode("admin12345"))
+                .password(bCryptPasswordEncoder.encode("admin123"))
                 .roles("ADMIN");
         auth.jdbcAuthentication()
                 .usersByUsernameQuery("SELECT u.username, u.password_hash,1 FROM user u WHERE u.username=?")

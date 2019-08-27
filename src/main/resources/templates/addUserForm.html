@@ -22,8 +22,7 @@
 <body>
 <div th:replace="fragments/header :: header"></div>
 <h1 class="h1" th:text="'Dodawanie użytkownika'"></h1>
-<form th:action="@{/admin/adduser}" th:object="${userFormData}" method="post"
-      class="form-signin">
+<form th:action="@{/admin/adduser}" th:object="${userFormData}" onclick='endableButtonSubmit("Zapisz");' method="post" class="form-signin">
 
     <label for="firstName">Imię użytkownika:</label>
     <input id="firstName" type="text" th:field="*{firstName}" autofocus class="form-control"/>
