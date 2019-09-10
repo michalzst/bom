@@ -11,6 +11,18 @@
                 document.getElementById(id).setAttribute('disabled','disabled');
             }
         }
+
+        function setUsername(){
+            var firstName;
+            var surName;
+            firstName = document.getElementById('firstName').value;
+            surName = document.getElementById('surName').value;
+            if (!(firstName == '')) {
+                if (!(surName == '')) {
+                    document.getElementById('username').value = firstName.charAt(0).toLocaleLowerCase() + surName.toLowerCase();
+                }
+            }
+        }
     </script>
 
     <title>Dodawanie użytkownika</title>
@@ -25,11 +37,11 @@
 <form th:action="@{/admin/adduser}" th:object="${userFormData}" onclick='endableButtonSubmit("Zapisz");' method="post" class="form-signin">
 
     <label for="firstName">Imię użytkownika:</label>
-    <input id="firstName" type="text" th:field="*{firstName}" autofocus class="form-control"/>
+    <input id="firstName" type="text" th:field="*{firstName}" onchange="setUsername()" autofocus class="form-control"/>
     <div class="error" th:errors="*{firstName}"></div>
 
     <label for="surName">Nazwisko użytkownika:</label>
-    <input id="surName" type="text" th:field="*{surName}" autofocus class="form-control"/>
+    <input id="surName" type="text" th:field="*{surName}" onchange="setUsername()" autofocus class="form-control"/>
     <div class="error" th:errors="*{surName}"></div>
 
     <label for="username">Nazwa użytkownika:</label>

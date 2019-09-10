@@ -22,7 +22,15 @@
                 <a href="/admin/adduser">Dodaj użytkownika</a>
             </span>
             <span th:if="${@userContextService.bomUser()}">
-                <a th:if="${@userContextService.getLoggedUserEmail()}" href="/index">Nowe zgłoszenia</a>
+                <a href="/index">Najnowsze zgloszenia</a>
+                <a href="/addticket">Dodaj zgłoszenie</a>
+                <a href="/editticket">Modyfikuj przyjete zgłoszenie</a>
+            </span>
+            <span th:if="${@userContextService.logistykaUser()}">
+                <a href="/index">Najnowsze zgloszenia</a>
+                <a href="/addticket">Dodaj zgłoszenie</a>
+                <a href="/editticket">Modyfikuj zgłoszenie</a>
+                <a href="/changestatus">Zmień status</a>
             </span>
             <a href="/logout">Wyloguj</a>
         </span>
@@ -30,9 +38,12 @@
             <a href="/index">Nowe zgloszenia</a>
             <a href="/login">Zaloguj się</a>
         </span>
-        <div style="display: flex">
-            <p th:if="${@userContextService.getLoggedUserEmail()}"
+        <div style="display: flex" th:if="${@userContextService.getLoggedUserEmail()}">
+            <p th:if="${@userContextService.admin()}"
                th:utext="'Zalogowano jako:' + '<br />' + ${@userContextService.getLoggedUserEmail()}"
+               style="text-align: center;color: white; margin-top:auto"></p>
+            <p th:if="!${@userContextService.admin()}"
+               th:utext="'Zalogowano jako:' + '<br />' + ${@userContextService.getUserFirstName()} +' '+ ${@userContextService.getUserSurName()}"
                style="text-align: center;color: white; margin-top:auto"></p>
         </div>
     </div>
