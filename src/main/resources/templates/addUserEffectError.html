@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Uzytkownik istnieje</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+<h3 class="h3" th:text="'Użytkownik o podanym loginie istnieje!'"></h3>
+<p class="h3" th:text="${addUserExist}"></p>
+
+</body>
+</html>

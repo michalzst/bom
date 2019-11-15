@@ -40,9 +40,15 @@ public class AdminContoller {
             return "addUserForm";
         }
 
-        userService.addNewUser(user);
-        model.addAttribute("addUserData", user.getUsername());
-        return "addUserEffect";
+        try {
+            userService.addNewUser(user);
+            model.addAttribute("addUserData", user.getUsername());
+            return "addUserEffect";
+        }catch (Exception e){
+            model.addAttribute("addUserExist", user.getUsername());
+            return "addUserEffectError";
+        }
+
     }
 
 }

@@ -9,9 +9,9 @@ public enum StatusZgloszenia {
     STATUS_WYKONANE("WYKONANE"),
     STATUS_NIEWYKONANE("NIEWYKONANE");
 
-    private String status;
+    private String statusName;
 
-    StatusZgloszenia(String status) {
-        this.status = status;
+    StatusZgloszenia(String statusName) {
+        this.statusName = statusName;
     }
 }

@@ -30,7 +30,7 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Data zgłoszenia</th>
+                <th>Data i czas zgłoszenia</th>
                 <th>Treść zgłoszenia</th>
                 <th>Nazwa klienta</th>
                 <th>Adres</th>
@@ -51,7 +51,7 @@
                 <td th:text="${zgloszenie.getNrTelefonu()}">Nr telefonu</td>
                 <td th:text="${zgloszenie.getNrOswiadczenia()}">Nr oswiadczenia</td>
                 <td th:text="${zgloszenie.getNrWorka()}">Nr worków</td>
-                <td th:text="${zgloszenie.getStatusZgloszenia().getStatus()}">Status</td>
+                <td th:text="${zgloszenie.getStatusZgloszenia().getStatusName()}">Status</td>
                 <td th:text="${zgloszenie.getNazwaUzytkownika()}">Przyjmujący zgłoszenie</td>
             </tr>
             </tbody>
